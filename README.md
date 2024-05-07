@@ -1,6 +1,6 @@
 # Patchouli OS
 
-This repository is an assembler trial to display a simple message in the console.
+This repository is about a simple OS :)
 
 I was bored but it works lol.
 
