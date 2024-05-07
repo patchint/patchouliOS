@@ -10,14 +10,14 @@ ArchLinux :
 
 ```bash
 sudo pacman -Syy
-sudo pacman -S nasm qemu
+sudo pacman -S nasm qemu gcc 
 ```
 
 Debian :
 
 ```bash
 sudo apt update
-sudo apt install nasm qemu-system-x86
+sudo apt install nasm qemu-system-x86 gcc
 ```
 
 ## Build and run
