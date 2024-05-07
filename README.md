@@ -23,7 +23,13 @@ sudo apt install nasm qemu-system-x86
 ## Build and run
 
 ```bash
-make all run
+make run
+```
+
+## Just build
+
+```bash
+make all
 ```
 
 ## Cleaning
