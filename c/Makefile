@@ -3,6 +3,11 @@ NASM = nasm
 LD = ld
 GRUB_MKRESCUE = grub-mkrescue
 
+# Add -g flag to CFLAGS for debugging and use 
+# gdb PatchouliOS/boot/kernel
+# Inside of GDB : target remote :1234
+# Then go through the wiki of GDB and good luck !
+
 CFLAGS = -m32 -fno-stack-protector -fno-builtin
 NASMFLAGS = -f elf32
 LDFLAGS = -m elf_i386 -T src/linker.ld

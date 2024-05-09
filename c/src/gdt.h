@@ -1,6 +1,7 @@
 #include "stdint.h"
 
 struct gdt_entry_struct{
+    // The order is VERY important, it's the base of the kernel
     uint16_t limit;
     uint16_t base_low;
     uint8_t base_middle;
