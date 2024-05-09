@@ -1,4 +1,7 @@
 #include "vga.h"
+#include "gdt.h"
+
+
 
 void kmain(void);
 
@@ -10,4 +13,7 @@ void kmain(void) {
     print("       /\\_/\\\n");
     print("      ( o.o )\n");
     print("       > ^ <\n");
+
+    initGdt();
+    print("GDT is working!\r\n");
 }
