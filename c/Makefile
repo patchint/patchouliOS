@@ -20,6 +20,9 @@ BINDIR = bin
 
 all: $(DISK_IMG)
 
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
 $(BINDIR)/vga.o: $(SRCDIR)/vga.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
