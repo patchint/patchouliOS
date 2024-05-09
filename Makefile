@@ -32,13 +32,16 @@ $(BINDIR)/kernel.o: $(SRCDIR)/kernel.c
 $(BINDIR)/gdt.o: $(SRCDIR)/gdt.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BINDIR)/util.o: $(SRCDIR)/util.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(BINDIR)/gdts.o: $(SRCDIR)/gdts.s
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 $(BINDIR)/boot.o: $(SRCDIR)/boot.s
 	$(NASM) $(NASMFLAGS) $< -o $@
 
-$(BINDIR)/kernel: $(BINDIR)/boot.o $(BINDIR)/gdts.o $(BINDIR)/kernel.o $(BINDIR)/vga.o $(BINDIR)/gdt.o
+$(BINDIR)/kernel: $(BINDIR)/boot.o $(BINDIR)/gdts.o $(BINDIR)/kernel.o $(BINDIR)/vga.o $(BINDIR)/gdt.o $(BINDIR)/util.o
 	$(LD) $(LDFLAGS) -o $@ $^
 
 $(DISK_IMG): $(BINDIR)/kernel
