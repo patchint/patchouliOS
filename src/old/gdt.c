@@ -1,6 +1,6 @@
 #include "gdt.h"
 #include "util.h"
-
+#include "./stdint.h"
 
 extern void gdt_flush(uint32_t);
 extern void tss_flush();
@@ -25,7 +25,7 @@ void initGdt(){
     
 }
 
-void writeTSS(uint32_t num, uint16_t ss0, uint32_t esp0){
+void writeTSS(uint32_t num, uint16_t ss0, uint32_t esp0) {
     uint32_t base = (uint32_t) &tss_entry;
     uint32_t limit = base + sizeof(tss_entry);
 

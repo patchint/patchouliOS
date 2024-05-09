@@ -1,27 +1,24 @@
-bits 32
+BITS 32
 
 section .text
-    align 4
-    dd 0x1BADB002
-    dd 0x00000000
-    dd -(0x1BADB002 + 0x00000000)
+    ALIGN 4
+    DD 0x1BADB002
+    DD 0x00000000
+    DD -(0x1BADB002 + 0x00000000)
 
 global start
 extern kmain
 
 start:
-    cli
-    mov esp, stack_space
-    call kmain
-    hlt
+    CLI
+    MOV esp, stack_space
+    CALL kmain
+    HLT
+HaltKernel:
+    CLI
+    HLT
+    JMP HaltKernel
 
-haltkernel:
-    cli
-    hlt
-    jmp haltkernel
-
-section .bss 
-
-resb 8192
-
+section .bss
+RESB 8192
 stack_space:

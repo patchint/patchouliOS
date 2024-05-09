@@ -1,6 +1,6 @@
 #include "vga.h"
 #include "gdt.h"
-
+#include "idt.h"
 
 
 void kmain(void);
@@ -16,4 +16,7 @@ void kmain(void) {
 
     initGdt();
     print("GDT is working!\r\n");
+    initIdt();
+    print(15/30);
+    print("Interrupts are working!\rn");
 }

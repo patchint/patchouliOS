@@ -12,7 +12,7 @@ ArchLinux :
 
 ```bash
 sudo pacman -Syy
-sudo pacman -S nasm qemu gcc 
+sudo pacman -S nasm qemu gcc bison flex gmp mpc mpfr texinfo
 ```
 
 Debian :

@@ -15,6 +15,7 @@ DISK_IMG = patchouli.iso
 
 SRCDIR = src
 BINDIR = bin
+BUILDDIR = build
 
 .PHONY: all run clean
 
@@ -22,6 +23,9 @@ all: $(DISK_IMG)
 
 $(BINDIR):
 	mkdir -p $(BINDIR)
+
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
 $(BINDIR)/vga.o: $(SRCDIR)/vga.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -35,13 +39,19 @@ $(BINDIR)/gdt.o: $(SRCDIR)/gdt.c
 $(BINDIR)/util.o: $(SRCDIR)/util.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BINDIR)/idt.o: $(SRCDIR)/idt.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(BINDIR)/gdts.o: $(SRCDIR)/gdts.s
+	$(NASM) $(NASMFLAGS) $< -o $@
+
+$(BINDIR)/idts.o: $(SRCDIR)/idt.s
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 $(BINDIR)/boot.o: $(SRCDIR)/boot.s
 	$(NASM) $(NASMFLAGS) $< -o $@
 
-$(BINDIR)/kernel: $(BINDIR)/boot.o $(BINDIR)/gdts.o $(BINDIR)/kernel.o $(BINDIR)/vga.o $(BINDIR)/gdt.o $(BINDIR)/util.o
+$(BINDIR)/kernel: $(BINDIR)/boot.o $(BINDIR)/gdts.o $(BINDIR)/kernel.o $(BINDIR)/vga.o $(BINDIR)/gdt.o $(BINDIR)/util.o $(BINDIR)/idt.o $(BINDIR)/idts.o
 	$(LD) $(LDFLAGS) -o $@ $^
 
 $(DISK_IMG): $(BINDIR)/kernel
